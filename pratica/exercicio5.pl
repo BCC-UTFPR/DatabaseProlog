@@ -12,12 +12,13 @@ filme(titanic, romance, cameron, 1997, 194).
 filme(tubarao, suspense, spielberg, 1975, 124).
 filme(volver, drama, almodovar, 2006, 121).
 
-dirigiu(X,Y) :- filme(X,_,Y,_,_).
-suspense(X) :- filme(X,suspense,_,_,_).
-lancamento(X,Y) :- filme(X,_,_,Y,_).
-duracaomenor100(X) :- filme(X,_,_,_,N) , N < 100.
-lancamentoentre(X) :- filme(X,_,_,N,_), N > 1999 , N < 2005.
-classico(X) :- filme(X,_,_,N,_), N < 1980.
-genero(X,Y) :- filme(X,Y,_,_,_).
+dirigiu(X,Y) :- filme(X,_,Y,_,_). %6
+suspense(X) :- filme(X,suspense,_,_,_). %3
+lancamento(X,Y) :- filme(X,_,_,Y,_). %7
+duracaomenor100(X) :- filme(X,_,_,_,N) , N < 100. %4
+lancamentoentre(X) :- filme(X,_,_,N,_), N > 1999 , N < 2005. %5
 
-classicosuspense(X) :- classico(X) , genero(X,suspense).
+classico(X) :- filme(X,_,_,N,_), N < 1980.  %1
+genero(X,Y) :- filme(X,Y,_,_,_). %8
+
+classicosuspense(X) :- classico(X) , genero(X,suspense). %2
