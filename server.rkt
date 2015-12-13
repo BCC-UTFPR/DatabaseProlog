@@ -43,6 +43,10 @@
      [("filmesdiretor" (string-arg)) chamada-diretor]
      [("filmeslancamento" (string-arg)) chamada-lancamento]
      [("filmesporgenero" (string-arg)) chamada-genero]
+     [("aluno" (string-arg)) chamada-aluno]
+     [("frequenta" (string-arg)) chamada-frequenta]
+     [("professor" (string-arg)) chamada-funcionario]
+     [("funcionario" (string-arg)) chamada-funcionario]
      [else main]))
 
 #|cada URL diferente deve-se criar um formato de HTML para que apareça na página.
@@ -84,7 +88,10 @@ Esta primeira é main que sempre irá ser executado na primeira vez, pode se diz
                                       (body (p, "/filmesdiretor, para pesquisar filmes por diretor,os diretores são: Nolan, Inarritu, Miller, Curtiz, Waschowsk, Hithcock, Adamson, Shymalan, Kubrik, Donner, Cameron, Spielberg e Almodovar, exemplo /filmesdiretor/spielberg"))
                                       (body (p, "/filmeslancamento, para pesquisar filme pelo lançamento do filme, exemplo /filmeslancamento/2005"))
                                       (body (p, "/filmesporgenero, para pesquisar filme pelo genero, os generos são suspense, drama, romance, ficcao e aventura, exemplo /filmesporgenero/suspense"))
-                                      
+                                      (body (p, "/alunos, para pesquisar alunos que estão matriculados em uma matéria, exemplo /aluno/calculo, as materias são calculo, programacao e estrutura"))
+                                      (body (p, "/frequenta, para pesquisar alunos que frequenta determinada universidade, uem ou utfpr, exemplo /frequenta/utfpr"))
+                                      (body (p, "/professor, para pesquisar o professor de uma determinada disciplina, calculo, estrutura e programação, exemplo /professor/calculo"))
+                                      (body (p, "/funcionario, para pesquisar onde o professor leciona, exemplo /funcionario/utfpr"))
                                       ))) ;CERTO
                                       
 ;FATORIAL
@@ -496,6 +503,54 @@ Esta primeira é main que sempre irá ser executado na primeira vez, pode se diz
                             (string-split 
                              (with-output-to-string 
                               (lambda() (system (string-append "swipl -s /home/jfilhogn/Documentos/LP/trabalhoProlog/pratica/exercicio5.pl -g \" genero(X,"genero"),write(X).\" -t halt.")))))) 
+                              (first resultado))
+
+;ALUNO
+(define (chamada-aluno req aluno)(response/xexpr `(html (head (title "Trabalho de LP"))
+                                      (body (p, "A busca foi realizada"))
+                                            (p, "Resultado: ",(alunoX aluno)))))
+
+;função de chamada externa para ALUNO
+(define (alunoX aluno) (define resultado 
+                            (string-split 
+                             (with-output-to-string 
+                              (lambda() (system (string-append "swipl -s /home/jfilhogn/Documentos/LP/trabalhoProlog/pratica/exercicio3.pl -g \" aluno(X,"aluno"),write(X).\" -t halt.")))))) 
+                              (first resultado))
+
+;FREQUENTA
+(define (chamada-frequenta req frequenta)(response/xexpr `(html (head (title "Trabalho de LP"))
+                                      (body (p, "A busca foi realizada"))
+                                            (p, "Resultado: ",(frequentaX frequenta)))))
+
+;função de chamada externa para FREQUENTA
+(define (frequentaX frequenta) (define resultado 
+                            (string-split 
+                             (with-output-to-string 
+                              (lambda() (system (string-append "swipl -s /home/jfilhogn/Documentos/LP/trabalhoProlog/pratica/exercicio3.pl -g \" frequenta(X,"frequenta"),write(X).\" -t halt.")))))) 
+                              (first resultado))
+
+;PROFESSOR
+(define (chamada-professor req professor)(response/xexpr `(html (head (title "Trabalho de LP"))
+                                      (body (p, "A busca foi realizada"))
+                                            (p, "Resultado: ",(professorX professor)))))
+
+;função de chamada externa para PROFESSOR
+(define (professorX professor) (define resultado 
+                            (string-split 
+                             (with-output-to-string 
+                              (lambda() (system (string-append "swipl -s /home/jfilhogn/Documentos/LP/trabalhoProlog/pratica/exercicio3.pl -g \" professor(X,"professor"),write(X).\" -t halt.")))))) 
+                              (first resultado))
+
+;FUNCIONARIO
+(define (chamada-funcionario req funcionario)(response/xexpr `(html (head (title "Trabalho de LP"))
+                                      (body (p, "A busca foi realizada"))
+                                            (p, "Resultado: ",(funcionarioX funcionario)))))
+
+;função de chamada externa para FUNCIONARIO
+(define (funcionarioX funcionario) (define resultado 
+                            (string-split 
+                             (with-output-to-string 
+                              (lambda() (system (string-append "swipl -s /home/jfilhogn/Documentos/LP/trabalhoProlog/pratica/exercicio3.pl -g \" funcionario(X,"funcionario"),write(X).\" -t halt.")))))) 
                               (first resultado))
 
 
