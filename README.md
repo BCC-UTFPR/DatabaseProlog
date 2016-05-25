@@ -1,6 +1,7 @@
-Projeto Nº 2 de Linguagem de Programação.
+Database (Prolog)
 ---
+Este projeto consiste na criação de um 'database' utilizando a linguagem de programação lógica Prolog, conectada ao Web Service feito anteriormente em Racket.
 
-O projeto consiste em criar um banco de dados utilizando o prolog e por conseguinte ser feitas as consultas através de um servidor criado na Linguagem de Programação Racket.
+Web Service: https://github.com/BCC-UTFPR/WebServiceRacket 
 
 
